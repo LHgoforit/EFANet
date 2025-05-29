@@ -1,0 +1,62 @@
+# --------------------------------------------------------------------
+#  requirements.txt  —  EFANet reproducibility stack (Python ≥3.10)
+#
+#  GPU target : CUDA 11.8
+#  Usage      : pip install -r requirements.txt \
+#               --extra-index-url https://download.pytorch.org/whl/cu118
+#
+#  All versions selected to match the configurations reported in the
+#  EFANet paper (training, evaluation, statistical analysis, deployment).
+# --------------------------------------------------------------------
+
+# ---------- Deep-learning core (CUDA 11.8 wheels) -------------------
+torch==2.2.1+cu118
+torchvision==0.17.1+cu118
+torchaudio==2.2.1+cu118
+
+# ---------- Logging & visualisation --------------------------------
+tensorboard>=2.15,<3.0
+
+# ---------- Data & computer vision ---------------------------------
+opencv-python>=4.9.0.80
+scikit-image>=0.22.0
+pillow>=10.3.0
+albumentations>=1.3.1
+
+# ---------- Model zoo / initialisation -----------------------------
+timm>=0.9.12            # for ImageNet-pretrained lightweight backbones
+
+# ---------- Scientific stack ---------------------------------------
+numpy>=1.24.4
+scipy>=1.11.4
+pandas>=2.2.0
+statsmodels>=0.14.1      # ANOVA & Tukey HSD
+scikit-learn>=1.4.2
+tqdm>=4.66.2
+
+# ---------- Metrics -------------------------------------------------
+lpips==0.1.4             # perceptual similarity (torch-2.x compatible)
+piq>=0.8.1               # PSNR, SSIM, LPIPS wrapper
+
+# ---------- Configuration ------------------------------------------
+hydra-core>=1.3.2
+yacs>=0.1.8
+
+# ---------- Deployment / export ------------------------------------
+onnx>=1.15.0
+onnxruntime-gpu>=1.17.1
+tensorrt>=8.6.1          # requires NVIDIA repo or wheel; for INT8 export
+
+# ---------- Downstream face-recognition evaluation -----------------
+deepface>=0.0.79
+
+# ---------- Development utilities ----------------------------------
+tabulate>=0.9.0
+black>=24.4.2
+pytest>=8.1.1
+ipykernel>=6.29.4
+jupyterlab>=4.1.5
+torchmetrics>=1.3.1
+
+# ---------- Compatibility shims ------------------------------------
+protobuf>=4.25.3         # avoids ONNX/Torch ABI mismatch
