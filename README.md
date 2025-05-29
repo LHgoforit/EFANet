@@ -36,7 +36,7 @@ python scripts/train.py --cfg configs/efanet_x4_celeba.yaml
 
 
 ## 🔍 Testing & Evaluation
-Run model inference and evaluation:
+Perform inference and evaluation on the Helen dataset for ×8 super-resolution:
 ```bash
 python scripts/test.py --cfg configs/efanet_x8_helen.yaml
 ```
