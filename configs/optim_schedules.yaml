@@ -1,0 +1,35 @@
+# ------------------------------------------------------------------
+#  optim_schedules.yaml
+#  Central repository of LR schedules used across EFANet experiments
+# ------------------------------------------------------------------
+
+# Cosine decay with linear warm-up
+cosine_default:
+  type: cosine
+  base_lr: 1.0e-4
+  min_lr: 1.0e-6
+  warmup:
+    epochs: 2
+    mode: linear
+  total_iters: 800000
+
+# Step decay: LR halved every 200 k iterations (paper default)
+step_halve_200k:
+  type: multistep
+  base_lr: 1.0e-4
+  gamma: 0.5
+  milestones: [200000, 400000, 600000]
+  warmup:
+    iters: 1000
+    mode: linear
+
+# Polynomial decay (optional ablation)
+poly_1M:
+  type: poly
+  base_lr: 1.0e-4
+  power: 1.0
+  min_lr: 1.0e-6
+  total_iters: 1000000
+  warmup:
+    epochs: 2
+    mode: linear

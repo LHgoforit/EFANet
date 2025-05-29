@@ -1,0 +1,77 @@
+# ------------------------------------------------------------------
+#  efanet_x16_ffhq.yaml
+#  Training configuration for EFANet on FFHQ, ×16 super-resolution
+# ------------------------------------------------------------------
+
+experiment:
+  name: efanet_x16_ffhq
+  scale: 16
+  seed: 1234
+  workspace: runs/x16_ffhq
+
+dataset:
+  root: /path/to/datasets/ffhq
+  train_list: train_ids.txt
+  val_list:   val_ids.txt
+  hr_size: 128        # HR crop size
+  lr_size: 8          # hr_size / scale
+
+dataloader:
+  num_workers: 8
+  batch_size: 48      # slightly smaller to fit GPU memory for ×16
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+
+augment:
+  hflip: true
+  rotation: 10
+  color_jitter: 0.1
+
+model:
+  type: EFANet
+  channels: 64
+  num_blocks: 13
+  dsdc_scales: 2
+  bfsa_reduction: 4
+  use_ccffm: true
+
+loss:
+  charbonnier_edge:
+    weight: 1.0
+    eps: 1.0e-3
+    alpha: 0.3
+  perceptual_channel:
+    weight: 0.1
+    features: [conv3_3, conv4_3]
+  attention_align:
+    weight: 0.05
+
+optimizer:
+  type: adam
+  lr: 1.0e-4
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+
+scheduler:
+  type: cosine
+  warmup_epochs: 2
+  total_iters: 1000000
+  min_lr: 1.0e-6
+
+training:
+  mixed_precision: true
+  ema_decay: 0.999
+  checkpoint_interval: 20000
+  log_interval: 100
+  val_interval: 5000
+  tensorboard: true
+
+evaluation:
+  metrics: [psnr, ssim, lpips]
+  save_images: false
+  lpips_network: alex
+
+deployment:
+  export_onnx: true
+  opset: 17
