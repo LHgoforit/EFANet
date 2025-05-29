@@ -1,0 +1,79 @@
+# ------------------------------------------------------------------
+#  efanet_x16_celeba.yaml
+#  Training configuration for EFANet on CelebA, ×16 super-resolution
+# ------------------------------------------------------------------
+
+experiment:
+  name: efanet_x16_celeba
+  scale: 16
+  seed: 1234
+  workspace: runs/x16_celeba
+
+dataset:
+  root: /path/to/datasets/celeba
+  train_list: train_ids.txt
+  val_list: val_ids.txt
+  hr_size: 128
+  lr_size: 8
+
+dataloader:
+  num_workers: 8
+  batch_size: 16
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+
+augment:
+  hflip: true
+  rotation: 10
+  color_jitter: 0.1
+
+model:
+  type: EFANet
+  channels: 64
+  num_blocks: 13
+  dsdc_scales: 3
+  bfsa_reduction: 4
+  use_ccffm: true
+
+loss:
+  charbonnier_edge:
+    weight: 1.0
+    eps: 1.0e-3
+    alpha: 0.3
+
+  perceptual_channel:
+    weight: 0.1
+    features: [conv1_2, conv2_2, conv3_3, conv4_3]
+
+  attention_align:
+    weight: 0.05
+
+optimizer:
+  type: adam
+  lr: 5.0e-5
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+
+scheduler:
+  type: cosine
+  warmup_epochs: 3
+  total_iters: 1200000
+  min_lr: 5.0e-7
+
+training:
+  mixed_precision: true
+  ema_decay: 0.999
+  checkpoint_interval: 20000
+  log_interval:  100
+  val_interval:  5000
+  tensorboard: true
+
+evaluation:
+  metrics: [psnr, ssim, lpips]
+  save_images: false
+  lpips_network: alex
+
+deployment:
+  export_onnx: true
+  opset: 17
