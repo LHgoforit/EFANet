@@ -19,6 +19,7 @@ pip install -r requirements.txt
 
 ## 📂 Dataset Preparation
 EFANet supports three face datasets—[CelebA](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) [1], [Helen](https://exposing.ai/helen/) [2] and [FFHQ](https://github.com/NVlabs/ffhq-dataset) [3], please manually download and organize datasets as follows:
+ <!--EFANet supports three face datasets—[CelebA](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) [1], [Helen](https://exposing.ai/helen/) [2] and [FFHQ](https://github.com/NVlabs/ffhq-dataset) [3], please manually download and organize datasets as follows: --> 
 ```
 EFANet/
 └── data/
