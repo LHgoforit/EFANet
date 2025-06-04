@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 
 ## 📂 Dataset Preparation
-EFANet supports three face datasets—[CelebA](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) [1], [Helen](https://exposing.ai/helen/) [2] and [FFHQ](https://github.com/NVlabs/ffhq-dataset) [3], please manually download and organize datasets as follows:
+EFANet supports three face datasets—CelebA, Helen and FFHQ, please manually download and organize datasets as follows:
  <!--EFANet supports three face datasets—[CelebA](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) [1], [Helen](https://exposing.ai/helen/) [2] and [FFHQ](https://github.com/NVlabs/ffhq-dataset) [3], please manually download and organize datasets as follows: --> 
 ```
 EFANet/
@@ -57,6 +57,7 @@ Benchmark inference latency:
 python scripts/benchmark_latency.py
 ```
 
+ <!--
 ## References
 
 [1] Liu, Ziwei, et al. *Deep learning face attributes in the wild*. Proceedings of the IEEE International Conference on Computer Vision (ICCV), 2015.
@@ -64,4 +65,4 @@ python scripts/benchmark_latency.py
 [2] Le, Vuong, et al. *Interactive facial feature localization*. In: Computer Vision–ECCV 2012. 12th European Conference on Computer Vision, Florence, Italy, October 7–13, 2012. Proceedings, Part III. Springer Berlin Heidelberg, 2012.
 
 [3] Karras, Tero, Samuli Laine, and Timo Aila. *A style-based generator architecture for generative adversarial networks*. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2019.
-
+ --> 
